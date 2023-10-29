@@ -2158,9 +2158,34 @@ void _glfwSetWindowDecoratedX11(_GLFWwindow *window, GLFWbool enabled) {
 }
 
 void _glfwSetWindowTitlebarX11(_GLFWwindow *window, GLFWbool enabled) {
-  // TODO
-  _glfwInputError(GLFW_PLATFORM_ERROR,
-                  "X11: Window attribute setting not implemented yet");
+  struct {
+      unsigned long flags;
+      unsigned long functions;
+      unsigned long decorations;
+      long input_mode;
+      unsigned long status;
+    } hints = {0};
+  
+    hints.flags = MWM_HINTS_DECORATIONS;
+    // TODO: check right hint 
+    /*
+      bit       decorations displayed
+      ---       ---------------------
+       0        no decorations
+       1        all decorations
+       2        border around the window
+       4        resizeh, handles to resize by dragging
+       8        title bar, showing WM_NAME
+      16        menu, drop-down menu of the "functions" above
+      32        minimize button, to iconify
+      64        maximize button, to full-screen
+    */
+    hints.decorations = enabled ? MWM_DECOR_ALL : 4;
+  
+    XChangeProperty(_glfw.x11.display, window->x11.handle,
+                    _glfw.x11.MOTIF_WM_HINTS, _glfw.x11.MOTIF_WM_HINTS, 32,
+                    PropModeReplace, (unsigned char *)&hints,
+                    sizeof(hints) / sizeof(long));
 }
 
 void _glfwSetWindowFloatingX11(_GLFWwindow *window, GLFWbool enabled) {
