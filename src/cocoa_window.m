@@ -1289,7 +1289,7 @@ void _glfwSetWindowDecoratedCocoa(_GLFWwindow *window, GLFWbool enabled) {
   } // autoreleasepool
 }
 
-void _glfwPlatformSetWindowTitlebar(_GLFWwindow *window, GLFWbool enabled) {
+void _glfwPlatformSetWindowTitlebarCocoa(_GLFWwindow *window, GLFWbool enabled) {
   @autoreleasepool {
     NSUInteger styleMask = [window->ns.object styleMask];
     if (enabled) {
