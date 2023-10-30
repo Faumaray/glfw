@@ -733,6 +733,7 @@ struct _GLFWplatform {
   GLFWbool (*framebufferTransparent)(_GLFWwindow *);
   float (*getWindowOpacity)(_GLFWwindow *);
   void (*setWindowResizable)(_GLFWwindow *, GLFWbool);
+  void (*setWindowTitlebar)(_GLFWwindow *, GLFWbool);
   void (*setWindowDecorated)(_GLFWwindow *, GLFWbool);
   void (*setWindowFloating)(_GLFWwindow *, GLFWbool);
   void (*setWindowOpacity)(_GLFWwindow *, float);
@@ -741,7 +742,6 @@ struct _GLFWplatform {
   void (*waitEvents)(void);
   void (*waitEventsTimeout)(double);
   void (*postEmptyEvent)(void);
-  void (*setWindowTitleBar)(_GLFWwindow *, GLFWbool);
   // EGL
   EGLenum (*getEGLPlatform)(EGLint **);
   EGLNativeDisplayType (*getEGLNativeDisplay)(void);

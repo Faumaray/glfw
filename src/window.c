@@ -888,7 +888,7 @@ GLFWAPI void glfwSetWindowAttrib(GLFWwindow *handle, int attrib, int value) {
 
     _glfw.hints.window.titlebar = value;
     if (!window->monitor)
-      _glfw.platform.setWindowTitleBar(window, value);
+      _glfw.platform.setWindowTitlebar(window, value);
     return;
   case GLFW_FLOATING:
     window->floating = value;
